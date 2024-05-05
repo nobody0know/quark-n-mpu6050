@@ -1,14 +1,15 @@
-KERNEL_DIR=/home/lxj/quark-n/linux/
+KERNEL_DIR=/home/lxj/kernel/quark-kernel/linux/
 ARCH=arm
 CROSS_COMPILE=arm-linux-
 export  ARCH  CROSS_COMPILE
 
+ccflags-y := -std=gnu99
+
 obj-m := mpu6050_drv.o
-mpu6050_drv-y := driver_mpu6050_dmp.o driver_mpu6050.o
 
 
 all:
-		$(MAKE) -C $(KERNEL_DIR) M=$(CURDIR) modules
+		$(MAKE) -C  $(KERNEL_DIR) M=$(CURDIR) modules
 
 .PHONE:clean
 

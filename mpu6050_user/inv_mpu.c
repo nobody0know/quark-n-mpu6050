@@ -39,16 +39,11 @@
  * min(int a, int b)
  */
 #if defined MOTION_DRIVER_TARGET_MSP430
-#include "msp430.h"
-#define i2c_write   msp430_i2c_write
-#define i2c_read    msp430_i2c_read
-#define delay_ms    msp430_delay_ms
-#define get_ms      msp430_get_clock_ms
-static inline int reg_int_cb(struct int_param_s *int_param)
-{
-    return msp430_reg_int_cb(int_param->cb, int_param->pin, int_param->lp_exit,
-        int_param->active_low);
-}
+#define i2c_write   i2c_write_mpu6050
+#define i2c_read    i2c_read_mpu6050
+#define delay_ms    msleep
+#define get_ms      NULL
+
 #define log_i(...)     do {} while (0)
 #define log_e(...)     do {} while (0)
 /* labs is already defined by TI's toolchain. */
